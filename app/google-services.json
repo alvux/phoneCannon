@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "761207591268",
+    "firebase_url": "https://phonecannon-1f3df.firebaseio.com",
+    "project_id": "phonecannon-1f3df",
+    "storage_bucket": "phonecannon-1f3df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761207591268:android:accfe91f15ad6377",
+        "android_client_info": {
+          "package_name": "com.inf8405.phonecannon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761207591268-gglj8coge4nfnkt6v3a9dh4bm5cu86sh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2-ydDlSnPCzhczqjQaVktWgrJnh1u1Cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761207591268-gglj8coge4nfnkt6v3a9dh4bm5cu86sh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

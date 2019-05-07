@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PhoneCannon</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="orientation_face_up">Face Up</string>
+    <string name="orientation_face_down">Face Down</string>
+
+    <string name="your_turn">Your Turn!</string>
+    <string name="opponent_turn">Opponent throws!</string>
+
+    <string name="close_game_btn">Rematch!</string>
+
+    <string name="opponent_map_tag">Opponent location</string>
+</resources>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity.MainActivity">
+
+    <TextView
+        android:id="@+id/text_turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Turn"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_turn">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+            <TextView style="@style/TableTextNumber" />
+            <TextView
+                style="@style/TableTextColumn"
+                android:text="Acceleration\n(m/s^2)"
+                android:textStyle="bold"/>
+            <TextView
+                style="@style/TableTextColumn"
+                android:text="Time of Flight\n(ms)" />
+            <TextView
+                style="@style/TableTextColumn"
+                android:text="Landing orientation" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+            <TextView
+                android:id="@+id/cell11"
+                style="@style/TableTextNumber"
+                android:text="1"/>
+            <TextView
+                android:id="@+id/cell12"
+                style="@style/TableTextColumn"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/cell13"
+                style="@style/TableTextColumn" />
+            <TextView
+                android:id="@+id/cell14"
+                style="@style/TableTextColumn" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+            <TextView
+                android:id="@+id/cell21"
+                style="@style/TableTextNumber"
+                android:text="1"/>
+            <TextView
+                android:id="@+id/cell22"
+                style="@style/TableTextColumn"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/cell23"
+                style="@style/TableTextColumn" />
+            <TextView
+                android:id="@+id/cell24"
+                style="@style/TableTextColumn" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+            <TextView
+                android:id="@+id/cell31"
+                style="@style/TableTextNumber"
+                android:text="2"/>
+            <TextView
+                android:id="@+id/cell32"
+                style="@style/TableTextColumn"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/cell33"
+                style="@style/TableTextColumn" />
+            <TextView
+                android:id="@+id/cell34"
+                style="@style/TableTextColumn" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+            <TextView
+                android:id="@+id/cell41"
+                style="@style/TableTextNumber"
+                android:text="2"/>
+            <TextView
+                android:id="@+id/cell42"
+                style="@style/TableTextColumn"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/cell43"
+                style="@style/TableTextColumn" />
+            <TextView
+                android:id="@+id/cell44"
+                style="@style/TableTextColumn" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+            <TextView
+                android:id="@+id/cell51"
+                style="@style/TableTextNumber"
+                android:text="3"/>
+            <TextView
+                android:id="@+id/cell52"
+                style="@style/TableTextColumn"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/cell53"
+                style="@style/TableTextColumn" />
+            <TextView
+                android:id="@+id/cell54"
+                style="@style/TableTextColumn" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+            <TextView
+                android:id="@+id/cell61"
+                style="@style/TableTextNumber"
+                android:text="3"/>
+            <TextView
+                android:id="@+id/cell62"
+                style="@style/TableTextColumn"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/cell63"
+                style="@style/TableTextColumn" />
+            <TextView
+                android:id="@+id/cell64"
+                style="@style/TableTextColumn" />
+        </TableRow>
+    </TableLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/score_highlights_layout"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_cancel_throw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/table"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/label_my_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Your Best:"
+            android:textColor="@color/colorYou"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/label_opponent_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Opponent's Best:"
+            android:textColor="@color/colorOpponent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/text_my_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="00"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/label_my_score"
+            app:layout_constraintStart_toStartOf="@+id/label_my_score"
+            app:layout_constraintTop_toBottomOf="@+id/label_my_score" />
+
+        <TextView
+            android:id="@+id/text_opponent_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="00"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/label_opponent_score"
+            app:layout_constraintStart_toStartOf="@+id/label_opponent_score"
+            app:layout_constraintTop_toBottomOf="@+id/label_opponent_score" />
+    </android.support.constraint.ConstraintLayout>
+
+    <fragment
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_cancel_throw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_highlights_layout" />
+
+    <Button
+        android:id="@+id/button_throw"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Throw"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_cancel_throw" />
+
+    <Button
+        android:id="@+id/button_cancel_throw"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Cancel\nthrow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_find_opponent" />
+
+    <Button
+        android:id="@+id/button_find_opponent"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Find\nopponent's\ndevice"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/button_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/table"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_information"/>
+
+    <ImageButton
+        android:id="@+id/button_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/table"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_history"/>
+</android.support.constraint.ConstraintLayout>
