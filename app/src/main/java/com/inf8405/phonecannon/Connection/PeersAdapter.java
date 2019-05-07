@@ -1,4 +1,4 @@
-package com.inf8405.phonecannon;
+package com.inf8405.phonecannon.Connection;
 
 import android.content.Context;
 import android.net.wifi.p2p.WifiP2pDevice;

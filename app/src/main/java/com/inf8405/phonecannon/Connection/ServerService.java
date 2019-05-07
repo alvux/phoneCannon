@@ -1,32 +1,24 @@
-package com.inf8405.phonecannon;
-
-import android.net.wifi.p2p.WifiP2pInfo;
-import android.util.Log;
+package com.inf8405.phonecannon.Connection;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ClientService implements CommunicationService {
+public class ServerService implements CommunicationService {
 
-    private Socket socket;
-    private WifiP2pInfo info;
+    private ServerSocket serverSocket;
+    private Socket clientSocket;
     private CommunicationListener listener;
-    private Thread clientThread;
+    private Thread serverThread;
     private Thread commThread;
-
-    public ClientService(WifiP2pInfo info) {
-        this.info = info;
-    }
 
     @Override
     public void start() {
-        clientThread = new Thread(new ClientThread());
-        clientThread.start();
+        serverThread = new Thread(new ServerThread());
+        serverThread.start();
     }
 
     @Override
@@ -34,14 +26,16 @@ public class ClientService implements CommunicationService {
         this.listener = listener;
     }
 
+    /**
+     * Sending messages as strings with the type put at the start like so: type|message
+     */
     @Override
     public void sendMessage(int type, String message) {
-        Log.d("TEST", "Sending message from client: " + message);
         new Thread(() -> {
             try {
-                if (null != socket) {
+                if (null != clientSocket) {
                     PrintWriter out = new PrintWriter(new BufferedWriter(
-                            new OutputStreamWriter(socket.getOutputStream())),
+                            new OutputStreamWriter(clientSocket.getOutputStream())),
                             true);
                     out.println(String.valueOf(type) + "|" + message);
                 }
@@ -56,32 +50,35 @@ public class ClientService implements CommunicationService {
         if(commThread != null && commThread.isAlive()) {
             commThread.interrupt();
         }
-        if(clientThread != null && clientThread.isAlive()) {
-            clientThread.interrupt();
+        if(serverThread != null && serverThread.isAlive()) {
+            serverThread.interrupt();
         }
-        if (socket != null) {
-            if (socket.isConnected()) {
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    // Give up
-                    e.printStackTrace();
-                }
+        if(serverSocket != null) {
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    class ClientThread implements Runnable {
+    class ServerThread implements Runnable {
 
+        /**
+         * Wait for a client socket to connect and start a communication thread with it
+         * Since the game is 1vs1, there's only one client, no need to wait for more connections after
+         * the first one
+         */
         public void run() {
-            socket = new Socket();
+            serverSocket = null;
             try {
-                Log.d("TEST", "Opening client socket - ");
-                socket.bind(null);
-                socket.connect((new InetSocketAddress(info.groupOwnerAddress.getHostName(), 8988)), 5000);
-                Log.d("TEST", "Client socket - " + socket.isConnected());
+                serverSocket = new ServerSocket(8988);
 
-                CommunicationThread communicationThread = new CommunicationThread(socket, new CommunicationListener() {
+                // Blocks until connection with a client
+                clientSocket = serverSocket.accept();
+
+                // Creating the serverThread that will listen for new messages
+                CommunicationThread communicationThread = new CommunicationThread(clientSocket, new CommunicationListener() {
                     @Override
                     public void onConnection() {
                         if(listener != null) {
@@ -91,7 +88,6 @@ public class ClientService implements CommunicationService {
 
                     @Override
                     public void onNewMessage(int type, String message) {
-                        Log.d("TEST", "Got message in client");
                         if(listener != null) {
                             listener.onNewMessage(type, message);
                         }

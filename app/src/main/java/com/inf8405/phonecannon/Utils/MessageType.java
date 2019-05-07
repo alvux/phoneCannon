@@ -1,4 +1,4 @@
-package com.inf8405.phonecannon;
+package com.inf8405.phonecannon.Utils;
 
 public class MessageType {
     public static final int READY = 1;

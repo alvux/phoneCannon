@@ -1,13 +1,13 @@
-package com.inf8405.phonecannon.MainActivity;
+package com.inf8405.phonecannon.Main;
 
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
-import com.inf8405.phonecannon.CommunicationListener;
-import com.inf8405.phonecannon.LoginActivity;
-import com.inf8405.phonecannon.WiFiDirectBroadcastReceiver;
-import com.inf8405.phonecannon.MessageType;
+import com.inf8405.phonecannon.Connection.CommunicationListener;
+import com.inf8405.phonecannon.Login.LoginActivity;
+import com.inf8405.phonecannon.Connection.WiFiDirectBroadcastReceiver;
+import com.inf8405.phonecannon.Utils.MessageType;
 
 public class ExchangeService implements CommunicationListener {
 
@@ -25,6 +25,7 @@ public class ExchangeService implements CommunicationListener {
 
     @Override
     public void onNewMessage(int type, String message) {
+        // Accept messages and forward to method
         if (type == MessageType.READY_TO_PLAY) {
             handleReady();
         } else if (type == MessageType.MY_TURN_IS_FINISHED) {

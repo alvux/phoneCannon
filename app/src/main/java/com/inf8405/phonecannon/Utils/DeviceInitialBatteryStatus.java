@@ -1,9 +1,4 @@
-package com.inf8405.phonecannon;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
+package com.inf8405.phonecannon.Utils;
 
 public final class DeviceInitialBatteryStatus {
 

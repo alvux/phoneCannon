@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity.MainActivity">
+    tools:context=".Main.MainActivity">
 
     <TextView
         android:id="@+id/text_turn"
@@ -28,12 +28,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_turn">
+        app:layout_constraintTop_toBottomOf="@+id/text_turn"
+        android:background="@color/colorPrimaryLite">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp">
+            android:padding="2dp"
+            android:background="@color/colorPrimary">
             <TextView style="@style/TableTextNumber" />
             <TextView
                 style="@style/TableTextColumn"
@@ -165,11 +167,12 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/score_highlights_layout"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/colorGreyLite"
         app:layout_constraintBottom_toTopOf="@+id/button_cancel_throw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -192,7 +195,7 @@
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintVertical_bias="0.19999999" />
 
         <TextView
             android:id="@+id/label_opponent_score"
@@ -210,13 +213,13 @@
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintVertical_bias="0.19" />
 
         <TextView
             android:id="@+id/text_my_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="8dp"
             android:text="00"
             android:textSize="24sp"
@@ -230,7 +233,7 @@
             android:id="@+id/text_opponent_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="8dp"
             android:text="00"
             android:textSize="24sp"

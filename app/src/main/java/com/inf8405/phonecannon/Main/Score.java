@@ -1,4 +1,4 @@
-package com.inf8405.phonecannon.MainActivity;
+package com.inf8405.phonecannon.Main;
 
 public class Score {
     public boolean isForMe;

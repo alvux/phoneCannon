@@ -1,4 +1,4 @@
-package com.inf8405.phonecannon;
+package com.inf8405.phonecannon.DeviceInfo;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -8,12 +8,13 @@ import android.net.TrafficStats;
 import android.os.BatteryManager;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.inf8405.phonecannon.MainActivity.MainActivity;
+import com.inf8405.phonecannon.Main.MainActivity;
+import com.inf8405.phonecannon.R;
+import com.inf8405.phonecannon.Utils.DeviceInitialBatteryStatus;
 
 public class DeviceInfo {
 

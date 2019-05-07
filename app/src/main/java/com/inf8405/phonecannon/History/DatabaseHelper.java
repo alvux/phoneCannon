@@ -1,10 +1,11 @@
-package com.inf8405.phonecannon;
+package com.inf8405.phonecannon.History;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.inf8405.phonecannon.History.HistoryReaderContract;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

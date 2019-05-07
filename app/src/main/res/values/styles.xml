@@ -12,7 +12,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:paddingStart">5dp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/colorGrey</item>
+        <item name="android:textColor">@color/colorGreyLite</item>
     </style>
 
     <style name="TableTextColumn" parent="TextAppearance.AppCompat">

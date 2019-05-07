@@ -1,4 +1,4 @@
-package com.inf8405.phonecannon;
+package com.inf8405.phonecannon.Connection;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,14 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.inf8405.phonecannon.MainActivity.MainActivity;
+import com.inf8405.phonecannon.Main.MainActivity;
+import com.inf8405.phonecannon.R;
 import com.inf8405.phonecannon.Utils.PermissionManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.inf8405.phonecannon.MessageType.READY;
-import static com.inf8405.phonecannon.MessageType.START;
+import static com.inf8405.phonecannon.Utils.MessageType.READY;
+import static com.inf8405.phonecannon.Utils.MessageType.START;
 
 public class ConnectionActivity extends AppCompatActivity implements CommunicationListener {
 
@@ -57,17 +58,6 @@ public class ConnectionActivity extends AppCompatActivity implements Communicati
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        manager.removeGroup(channel, new WifiP2pManager.ActionListener() {
-//            @Override
-//            public void onSuccess() {
-//                Log.d("TEST", "Disconnected from peer");
-//            }
-//
-//            @Override
-//            public void onFailure(int reason) {
-//                Log.e("TEST", "Failed to disconnected from peer");
-//            }
-//        });
         WiFiDirectBroadcastReceiver.getInstance().disconnect();
     }
 
@@ -76,6 +66,8 @@ public class ConnectionActivity extends AppCompatActivity implements Communicati
         super.onResume();
         receiver = WiFiDirectBroadcastReceiver.buildInstance(manager, channel, this);
         registerReceiver(receiver, intentFilter);
+
+        // Automatically start discovering peers
         discoverPeers();
     }
 
@@ -90,6 +82,7 @@ public class ConnectionActivity extends AppCompatActivity implements Communicati
         peersAdapter = new PeersAdapter(this, availablePeersList);
         peersListView.setAdapter(peersAdapter);
 
+        // Connect to peer on click
         peersListView.setOnItemClickListener((parent, view, position, id) -> {
             WifiP2pDevice device = (WifiP2pDevice) parent.getItemAtPosition(position);
             receiver.connectTo(device);
@@ -101,10 +94,12 @@ public class ConnectionActivity extends AppCompatActivity implements Communicati
 
             @Override
             public void onSuccess() {
+                // Unused
             }
 
             @Override
             public void onFailure(int reasonCode) {
+                Log.e("ConnectionActivity", "Peer discovery onFailure with code " + reasonCode);
             }
         });
     }
@@ -117,7 +112,6 @@ public class ConnectionActivity extends AppCompatActivity implements Communicati
     @Override
     public void onConnection() {
         if(!receiver.isOwner) {
-            Log.d("TEST", "Sending ready confirmation");
             receiver.communicationService.sendMessage(READY, "");
         }
     }
@@ -125,12 +119,10 @@ public class ConnectionActivity extends AppCompatActivity implements Communicati
     @Override
     public void onNewMessage(int type, String message) {
         if(type == READY) {
-            Log.d("TEST", "Received ready confirmation");
-            Log.d("TEST", "Sending start confirmation");
+            // Notify the second phone to start the game
             receiver.communicationService.sendMessage(START, "");
             startGame();
         } else if(type == START) {
-            Log.d("TEST", "Received start confirmation");
             startGame();
         }
     }

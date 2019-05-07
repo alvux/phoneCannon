@@ -1,15 +1,19 @@
-package com.inf8405.phonecannon.MainActivity;
+package com.inf8405.phonecannon.Main;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class SensorHandler implements SensorEventListener {
 
     private final float GRAVITY = 9.8f;
-    private final float THROW_THRESHOLD = 18f;
-    private final long TIME_THRESHOLD = 200;
+    private final float THROW_THRESHOLD = 15f;
+    private final long TIME_THRESHOLD = 1000;
+    private final long TIME_DELAY = 1500;
 
     private SensorManager sensorManager;
     private Sensor accelerometer;
@@ -20,7 +24,7 @@ public class SensorHandler implements SensorEventListener {
     private boolean isFacingUp = true;
     private long throwTime;
     private long landingTime;
-    private float initialAcc;
+    private float maxAcc;
 
     public SensorHandler (MainActivity activity) {
         mActivity = activity;
@@ -79,7 +83,7 @@ public class SensorHandler implements SensorEventListener {
     private void checkForThrowBegin(float acc) {
         if (acc > GRAVITY + THROW_THRESHOLD) {
             mActivity.startThrow();
-            initialAcc = acc;
+            maxAcc = acc;
             isWaitingForThrow = false;
             isInFlight = true;
             throwTime = System.currentTimeMillis();
@@ -91,8 +95,19 @@ public class SensorHandler implements SensorEventListener {
             mActivity.makeLanding();
             isInFlight = false;
             landingTime = System.currentTimeMillis();
-            mActivity.finishShot(throwTime, landingTime, initialAcc, isFacingUp);
+            waitFinalOrientation();
+        } else if (acc > maxAcc){
+            maxAcc = acc;
         }
+    }
+
+    private void waitFinalOrientation() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                mActivity.finishShot(throwTime, landingTime, maxAcc, isFacingUp);
+            }
+        }, TIME_DELAY);
     }
 
     public void listenForThrow(){

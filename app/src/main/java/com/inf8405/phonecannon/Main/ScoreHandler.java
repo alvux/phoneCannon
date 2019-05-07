@@ -1,4 +1,4 @@
-package com.inf8405.phonecannon.MainActivity;
+package com.inf8405.phonecannon.Main;
 
 import android.app.Activity;
 import android.widget.TextView;
@@ -26,6 +26,8 @@ public class ScoreHandler {
     public ScoreHandler(MainActivity activity){
         mainActivity = activity;
         initCells(activity);
+
+        // get resources
         friendlyColor = activity.getResources().getColor(R.color.colorYou);
         fopponentColor = activity.getResources().getColor(R.color.colorOpponent);
         faceUp = activity.getResources().getString(R.string.orientation_face_up);
@@ -81,6 +83,7 @@ public class ScoreHandler {
     }
 
     private void initCells(Activity activity){
+        // Get interface elments
         cells.add(new ArrayList<>());
         cells.get(cells.size()-1).add(activity.findViewById(R.id.cell11));
         cells.get(cells.size()-1).add(activity.findViewById(R.id.cell12));

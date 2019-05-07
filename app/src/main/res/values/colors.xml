@@ -2,8 +2,10 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryLite">#9bc4dd</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorYou">#0ea800</color>
     <color name="colorOpponent">#BC0505</color>
     <color name="colorGrey">#777777</color>
+    <color name="colorGreyLite">#aaaaaa</color>
 </resources>

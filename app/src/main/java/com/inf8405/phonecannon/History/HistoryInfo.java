@@ -1,17 +1,17 @@
-package com.inf8405.phonecannon;
+package com.inf8405.phonecannon.History;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.inf8405.phonecannon.R;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;

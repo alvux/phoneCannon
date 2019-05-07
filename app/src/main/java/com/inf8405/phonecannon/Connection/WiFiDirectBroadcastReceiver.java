@@ -1,4 +1,4 @@
-package com.inf8405.phonecannon;
+package com.inf8405.phonecannon.Connection;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -47,7 +47,6 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
             mManager.requestGroupInfo(mChannel, new WifiP2pManager.GroupInfoListener() {
                 @Override
                 public void onGroupInfoAvailable(WifiP2pGroup group) {
-                    Log.d("Disconnect Message", Boolean.toString(group.isGroupOwner()));
                     if (group != null && mManager != null && mChannel != null
                             && group.isGroupOwner()) {
                         mManager.removeGroup(mChannel, new WifiP2pManager.ActionListener() {
@@ -93,17 +92,30 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                     .getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
             if (networkInfo.isConnected()) {
                 mManager.requestConnectionInfo(mChannel, info -> {
+                    // If the group is formed and you are the server
                     if(info.groupFormed && info.isGroupOwner) {
                         isOwner = true;
+                        // Disconnect from previous group if it wasn't done before
                         if(communicationService != null) communicationService.disconnect();
+
                         communicationService = new ServerService();
+                        // Register the current activity as a listener to the service
                         if(mActivity != null) communicationService.register(mActivity);
+
+                        // Start the connection
                         communicationService.start();
+
+                    // else if you are the client
                     } else if(info.groupFormed) {
                         isOwner = false;
+                        // Disconnect from previous group if it wasn't done before
                         if(communicationService != null) communicationService.disconnect();
+
                         communicationService = new ClientService(info);
+                        // Register the current activity as a listener to the service
                         if(mActivity != null) communicationService.register(mActivity);
+
+                        // Start the connection
                         communicationService.start();
                     }
 
@@ -120,6 +132,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
         mManager.connect(mChannel, config, new WifiP2pManager.ActionListener() {
             @Override
             public void onSuccess() {
+                // Unused, we get the event in the onReceive function above
             }
 
             @Override

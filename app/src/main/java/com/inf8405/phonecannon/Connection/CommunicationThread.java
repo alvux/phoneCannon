@@ -1,6 +1,4 @@
-package com.inf8405.phonecannon;
-
-import android.util.Log;
+package com.inf8405.phonecannon.Connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +24,7 @@ public class CommunicationThread implements Runnable {
 
         public void run() {
 
+            // While the thread is running, read new messages and notify the listener
             while (!Thread.currentThread().isInterrupted()) {
                 try {
                     String read = input.readLine();
@@ -34,7 +33,8 @@ public class CommunicationThread implements Runnable {
                         read = "Client Disconnected";
                         break;
                     }
-                    Log.d("TEST", "new message from client: " + read);
+
+                    // Type and message are separated by the char |
                     int indexSeparator = read.indexOf("|");
                     if(indexSeparator > 0) {
                         try {
